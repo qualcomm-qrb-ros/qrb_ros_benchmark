@@ -1,0 +1,38 @@
+{
+  "qrb_ros_imu": {
+    "BasicPerformanceMetrics.RECEIVED_DURATION": 5019.522623697917,
+    "BasicPerformanceMetrics.MEAN_PLAYBACK_FRAME_RATE": 202.39100914116554,
+    "BasicPerformanceMetrics.MEAN_FRAME_RATE": 202.4096863814278,
+    "BasicPerformanceMetrics.NUM_MISSED_FRAMES": 0.0,
+    "BasicPerformanceMetrics.NUM_FRAMES_SENT": 1016.0,
+    "BasicPerformanceMetrics.FIRST_SENT_RECEIVED_LATENCY": 1.6370442708333333,
+    "BasicPerformanceMetrics.LAST_SENT_RECEIVED_LATENCY": 1.3841145833333333,
+    "BasicPerformanceMetrics.FIRST_INPUT_LATENCY": 1.6370753333333334,
+    "BasicPerformanceMetrics.LAST_INPUT_LATENCY": 1.3841233333333334,
+    "BasicPerformanceMetrics.MAX_LATENCY": 5.016393,
+    "BasicPerformanceMetrics.MIN_LATENCY": 0.644319,
+    "BasicPerformanceMetrics.MEAN_LATENCY": 1.8897658450305777,
+    "BasicPerformanceMetrics.MAX_JITTER": 5.287109375,
+    "BasicPerformanceMetrics.MIN_JITTER": 0.0,
+    "BasicPerformanceMetrics.MEAN_JITTER": 1.1905905217578896,
+    "BasicPerformanceMetrics.STD_DEV_JITTER": 1.0327541582660051
+  },
+
+  "ResourceMetrics.BASELINE_OVERALL_CPU_UTILIZATION": 12.5,
+  "ResourceMetrics.MAX_OVERALL_CPU_UTILIZATION": 25.0,
+  "ResourceMetrics.MIN_OVERALL_CPU_UTILIZATION": 0.0,
+  "ResourceMetrics.MEAN_OVERALL_CPU_UTILIZATION": 3.3015959588417196,
+  "ResourceMetrics.STDDEV_OVERALL_CPU_UTILIZATION": 4.361769437087449,
+
+  "metadata": {
+    "BenchmarkMetadata.NAME": "Qrb Ros Imu Live Benchmark",
+    "BenchmarkMetadata.TEST_FILE_PATH": "/data/ros2_ws/qrb_ros_imu_benchmark.py",
+    "BenchmarkMetadata.TEST_DATETIME": "2024-07-18T00:00:32Z",
+    "BenchmarkMetadata.DEVICE_HOSTNAME": "qcm6490",
+    "BenchmarkMetadata.DEVICE_ARCH": "aarch64",
+    "BenchmarkMetadata.DEVICE_OS": "Linux 6.6.28-debug-01890-g350dfd604d2f-dirty #1 SMP PREEMPT Wed Jun 19 20:29:11 UTC 2024",
+    "BenchmarkMetadata.IDLE_CPU_UTIL": 0.7375,
+    "BenchmarkMetadata.BENCHMARK_MODE": 3,
+    "BenchmarkMetadata.CONFIG": "ros2_benchmark_config:\n  additional_fixed_publisher_rate_tests:\n  - 10.0\n  - 30.0\n  - 60.0\n  assets_root: /workspaces/isaac_ros-dev/src/ros2_benchmark/assets\n  benchmark_duration: 5.0\n  benchmark_mode: BenchmarkMode.LIVE\n  benchmark_name: Qrb Ros Imu Live Benchmark\n  benchmark_namespace: r2b\n  binary_search_acceptable_frame_loss_fraction: 0.05\n  binary_search_acceptable_frame_rate_drop: 10.0\n  binary_search_duration_fraction: 1.0\n  binary_search_terminal_interval_width: 10.0\n  collect_start_timestamps_from_monitors: true\n  custom_report_info: {}\n  default_config_version: 0.30.0\n  default_service_future_timeout_sec: 15.0\n  enable_resource_profiler: true\n  enable_trial_buffer_preparation: false\n  enforce_publisher_rate: false\n  export_monitor_raw_data: false\n  input_data_end_time: -1.0\n  input_data_path: ''\n  input_data_start_time: -1.0\n  linear_scan_acceptable_frame_loss_fraction: 0.05\n  linear_scan_acceptable_frame_rate_drop: 5.0\n  linear_scan_duration_fraction: 1.0\n  linear_scan_step_size: 5.0\n  load_data_in_real_time: false\n  log_file_name: ''\n  log_folder: /tmp\n  monitor_info_list:\n  - calculators:\n    - class_name: BasicPerformanceCalculator\n      config:\n        message_key_match: true\n        report_prefix: qrb_ros_imu\n      module_name: ros2_benchmark.basic_performance_calculator\n    service_name: monitor_node1\n  play_messages_service_future_timeout_sec: 15.0\n  playback_message_buffer_size: 100\n  post_trial_run_wait_time_sec: 0.0\n  pre_stop_monitoring_wait_time_sec: 5.0\n  pre_trial_run_wait_time_sec: 0.0\n  publish_tf_messages_in_set_data: false\n  publish_tf_static_messages_in_set_data: false\n  publisher_lower_frequency: 10.0\n  publisher_upper_frequency: 100.0\n  record_data_timeline: false\n  resource_profiling_interval_sec: 0.01\n  revise_timestamps_as_message_ids: false\n  ros1_ws: /workspaces/isaac_ros-dev/isaac_ros_1-dev\n  set_data_service_future_timeout_sec: 60.0\n  setup_service_client_timeout_sec: 20.0\n  start_recording_service_future_timeout_sec: 35.0\n  start_recording_service_timeout_sec: 30\n  test_iterations: 5\n"
+  }
+}
