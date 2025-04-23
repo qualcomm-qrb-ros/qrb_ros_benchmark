@@ -4,7 +4,7 @@ qrb_ros_benchmark is a ros package that extends the functionality of opensource 
 
 ## Overview
 
-qrb_ros_benchmark is a ros package that extends the functionality of opensource ros2_benchmark package. qrb_ros_benchmark supports testing the performance of ROS nodes after accelerating by the dmabuf_transport / qrb_ros_transport function. [QRB ROS Transport](https://github.com/quic-qrb-ros/qrb_ros_transport), it leverages type adaption and intra process communication to optimize message formats and dramatically accelerate communication between participating nodes.
+qrb_ros_benchmark is a ros package that extends the functionality of opensource ros2_benchmark package. qrb_ros_benchmark supports testing the performance of ROS nodes after accelerating by the dmabuf_transport / qrb_ros_transport function. [QRB ROS Transport](https://github.com/qualcomm-qrb-ros/qrb_ros_transport), it leverages type adaption and intra process communication to optimize message formats and dramatically accelerate communication between participating nodes.
 
 
 ## Build
@@ -17,13 +17,13 @@ Currently, we only support use QCLINUX to build
 
 3. Clone this repository under `<qirp_decompressed_workspace>/qirp-sdk/ros_ws`
      ```bash
-     git clone https://github.com/quic-qrb-ros/lib_mem_dmabuf.git
-     git clone https://github.com/quic-qrb-ros/qrb_ros_imu.git
-     git clone https://github.com/quic-qrb-ros/qrb_ros_transport.git
-     git clone https://github.com/quic-qrb-ros/dmabuf_transport.git
-     git clone https://github.com/quic-qrb-ros/qrb_ros_tensor_list_msgs.git
+     git clone https://github.com/qualcomm-qrb-ros/lib_mem_dmabuf.git
+     git clone https://github.com/qualcomm-qrb-ros/qrb_ros_imu.git
+     git clone https://github.com/qualcomm-qrb-ros/qrb_ros_transport.git
+     git clone https://github.com/qualcomm-qrb-ros/dmabuf_transport.git
+     git clone https://github.com/qualcomm-qrb-ros/qrb_ros_tensor_list_msgs.git
      git clone https://github.com/NVIDIA-ISAAC-ROS/ros2_benchmark.git
-     git clone https://github.com/quic-qrb-ros/qrb_ros_benchmark.git
+     git clone https://github.com/qualcomm-qrb-ros/qrb_ros_benchmark.git
      ```
 
 4. Add dependencies in ros2_benhcmark/ros2_benchmark/CMakeLists.txt
@@ -81,7 +81,7 @@ a.Run with command
 
 ## Acceleration Performance Test
 
-This package is based on ROS2 Benchmark, and additional support to test the  [QRB ROS Transport](https://github.com/quic-qrb-ros/qrb_ros_transport) optimize message formats and accelerate communication between participating nodes.
+This package is based on ROS2 Benchmark, and additional support to test the  [QRB ROS Transport](https://github.com/qualcomm-qrb-ros/qrb_ros_transport) optimize message formats and accelerate communication between participating nodes.
 
 ## Packages
 
