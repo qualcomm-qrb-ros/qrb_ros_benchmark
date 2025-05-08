@@ -18,18 +18,7 @@ endif()
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
 # find dependencies
-find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(rclcpp_components REQUIRED)
-find_package(ros2_benchmark REQUIRED)
-find_package(ros2_benchmark_interfaces REQUIRED)
-find_package(sensor_msgs REQUIRED)
 find_package(ament_cmake_auto REQUIRED)
-find_package(rosbag2_compression REQUIRED)
-find_package(qrb_ros_transport REQUIRED)
-find_package(dmabuf_transport REQUIRED)
-find_package(qrb_ros_tensor_list_msgs REQUIRED)
-
 ament_auto_find_build_dependencies()
 
 # add qrb_playback_node lib
