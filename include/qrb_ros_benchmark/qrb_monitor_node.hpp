@@ -8,8 +8,9 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "ros2_benchmark/monitor_node.hpp"
-#include "qrb_ros_transport/type/image.hpp"
-#include "qrb_ros_transport/type/imu.hpp"
+#include "qrb_ros_transport_image_type/image.hpp"
+#include "qrb_ros_transport_imu_type/imu.hpp"
+#include "qrb_ros_transport_point_cloud2_type/point_cloud2.hpp"
 #include "dmabuf_transport/type/image.hpp"
 #include "dmabuf_transport/type/point_cloud2.hpp"
 #include "sensor_msgs/msg/image.hpp"
