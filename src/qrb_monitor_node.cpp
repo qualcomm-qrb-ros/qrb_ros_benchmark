@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #include "qrb_ros_benchmark/qrb_monitor_node.hpp"
+#include "qrb_ros_benchmark/qrb_message_types.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
 using std::placeholders::_1;
@@ -21,26 +22,29 @@ QrbMonitorNode::QrbMonitorNode(const rclcpp::NodeOptions & options)
 void QrbMonitorNode::create_monitor_subscriber()
 {
   RCLCPP_INFO(this->get_logger(), "Monitor data format=\"%s\"", monitor_data_format_.c_str());
-  // Create transport type subscriber
-  if (monitor_data_format_.compare("qrb_ros/transport/type/Image") == 0) {
-    return create_message_subscriber<qrb_ros::transport::type::Image>();
-  } else if (monitor_data_format_.compare("qrb_ros/transport/type/Imu") == 0) {
-    return create_message_subscriber<qrb_ros::transport::type::Imu>();
-  } else if (monitor_data_format_.compare("dmabuf_transport/type/Image") == 0) {
-    return create_message_subscriber<dmabuf_transport::type::Image>();
-  } else if (monitor_data_format_.compare("dmabuf_transport/type/PointCloud2") == 0) {
-    return create_message_subscriber<dmabuf_transport::type::PointCloud2>();
-  }
+  
+  // Create transport type subscriber using common macros
+  #define CREATE_QRB_TRANSPORT_SUB(format_str, msg_type) \
+    if (monitor_data_format_.compare(format_str) == 0) { \
+      return create_message_subscriber<msg_type>(); \
+    }
+  
+  FOR_EACH_QRB_TRANSPORT_TYPE(CREATE_QRB_TRANSPORT_SUB)
+  
+  #define CREATE_DMABUF_TRANSPORT_SUB(format_str, msg_type) \
+    if (monitor_data_format_.compare(format_str) == 0) { \
+      return create_message_subscriber<msg_type>(); \
+    }
+    
+  FOR_EACH_DMABUF_TRANSPORT_TYPE(CREATE_DMABUF_TRANSPORT_SUB)
 
   // Create ros message type subscriber
   #define CREATE_ROS_MESSAGE_SUBSCRIBER(ROS_MESSAGE) \
-  if (rosidl_generator_traits::name<ROS_MESSAGE>() == monitor_data_format_) { \
-    return create_message_subscriber<ROS_MESSAGE>(); \
-  } \
-
-  CREATE_ROS_MESSAGE_SUBSCRIBER(sensor_msgs::msg::Image)
-  CREATE_ROS_MESSAGE_SUBSCRIBER(sensor_msgs::msg::CompressedImage)
-  CREATE_ROS_MESSAGE_SUBSCRIBER(qrb_ros_tensor_list_msgs::msg::TensorList)
+    if (rosidl_generator_traits::name<ROS_MESSAGE>() == monitor_data_format_) { \
+      return create_message_subscriber<ROS_MESSAGE>(); \
+    }
+  
+  FOR_EACH_ROS_MESSAGE_TYPE(CREATE_ROS_MESSAGE_SUBSCRIBER)
 
   // Create generic type message subscriber(SerializedMessage)
   CreateGenericTypeMonitorSubscriber();

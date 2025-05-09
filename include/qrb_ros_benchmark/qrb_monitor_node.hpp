@@ -4,18 +4,15 @@
 #ifndef QRB_ROS_BENCHMARK__QRB_MONITOR_NODE_HPP_
 #define QRB_ROS_BENCHMARK__QRB_MONITOR_NODE_HPP_
 
+// Standard library
 #include <string>
 
+// ROS libraries
 #include "rclcpp/rclcpp.hpp"
 #include "ros2_benchmark/monitor_node.hpp"
-#include "qrb_ros_transport_image_type/image.hpp"
-#include "qrb_ros_transport_imu_type/imu.hpp"
-#include "qrb_ros_transport_point_cloud2_type/point_cloud2.hpp"
-#include "dmabuf_transport/type/image.hpp"
-#include "dmabuf_transport/type/point_cloud2.hpp"
-#include "sensor_msgs/msg/image.hpp"
-#include "sensor_msgs/msg/compressed_image.hpp"
-#include "qrb_ros_tensor_list_msgs/msg/tensor_list.hpp"
+
+// QRB message types (includes all necessary message type headers)
+#include "qrb_ros_benchmark/qrb_message_types.hpp"
 
 namespace qrb_ros
 {
@@ -25,12 +22,10 @@ namespace benchmark
 class QrbMonitorNode : public ros2_benchmark::MonitorNode
 {
 public:
-
   // QrbMonitorNode constructor.
   explicit QrbMonitorNode(const rclcpp::NodeOptions &);
 
 private:
-
   // Determine the format, request to create the corresponding type of subscriber.
   void create_monitor_subscriber();
 
