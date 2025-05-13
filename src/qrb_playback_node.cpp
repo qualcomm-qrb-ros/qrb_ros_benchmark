@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #include "qrb_ros_benchmark/qrb_playback_node.hpp"
+#include "qrb_ros_benchmark/qrb_message_types.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
 using std::placeholders::_1;
@@ -52,31 +53,31 @@ void QrbPlaybackNode::create_playback_pubsub(const size_t index, const std::stri
 {
   RCLCPP_INFO(this->get_logger(), "Data format=\"%s\", index=%ld", format.c_str(), index);
 
-  // Create transport_type pubsub
-  if (format.compare("qrb_ros/transport/type/Image") == 0) {
-    pub_sub_types_[index] = PubSubType::QrbTransportType;
-    return create_message_pubsub<qrb_ros::transport::type::Image>(index, format);
-  } else if (format.compare("qrb_ros/transport/type/Imu") == 0) {
-    pub_sub_types_[index] = PubSubType::QrbTransportType;
-    return create_message_pubsub<qrb_ros::transport::type::Imu>(index, format);
-  } else if (format.compare("dmabuf_transport/type/Image") == 0) {
-    pub_sub_types_[index] = PubSubType::DmabufTransportType;
-    return create_message_pubsub<dmabuf_transport::type::Image>(index, format);
-  } else if (format.compare("dmabuf_transport/type/PointCloud2") == 0) {
-    pub_sub_types_[index] = PubSubType::DmabufTransportType;
-    return create_message_pubsub<dmabuf_transport::type::PointCloud2>(index, format);
-  }
+  // Create transport_type pubsub using common macros
+  #define CREATE_QRB_TRANSPORT_PUBSUB(format_str, msg_type) \
+    if (format.compare(format_str) == 0) { \
+      pub_sub_types_[index] = PubSubType::QrbTransportType; \
+      return create_message_pubsub<msg_type>(index, format); \
+    }
+  
+  FOR_EACH_QRB_TRANSPORT_TYPE(CREATE_QRB_TRANSPORT_PUBSUB)
+  
+  #define CREATE_DMABUF_TRANSPORT_PUBSUB(format_str, msg_type) \
+    if (format.compare(format_str) == 0) { \
+      pub_sub_types_[index] = PubSubType::DmabufTransportType; \
+      return create_message_pubsub<msg_type>(index, format); \
+    }
+    
+  FOR_EACH_DMABUF_TRANSPORT_TYPE(CREATE_DMABUF_TRANSPORT_PUBSUB)
 
   // Create ros message type pubsub
   #define CREATE_ROS_MESSAGE_PUBSUB(ROS_MESSAGE) \
-  if (rosidl_generator_traits::name<ROS_MESSAGE>() == format) { \
-    pub_sub_types_[index] = PubSubType::RosMessaageType; \
-    return create_message_pubsub<ROS_MESSAGE>(index, format); \
-  } \
-
-  CREATE_ROS_MESSAGE_PUBSUB(sensor_msgs::msg::Image)
-  CREATE_ROS_MESSAGE_PUBSUB(sensor_msgs::msg::CompressedImage)
-  CREATE_ROS_MESSAGE_PUBSUB(qrb_ros_tensor_list_msgs::msg::TensorList)
+    if (rosidl_generator_traits::name<ROS_MESSAGE>() == format) { \
+      pub_sub_types_[index] = PubSubType::RosMessaageType; \
+      return create_message_pubsub<ROS_MESSAGE>(index, format); \
+    }
+  
+  FOR_EACH_ROS_MESSAGE_TYPE(CREATE_ROS_MESSAGE_PUBSUB)
 
   //  Create generic_type type pubsub
   pub_sub_types_[index] = PubSubType::GenericType;
@@ -260,31 +261,26 @@ bool QrbPlaybackNode::PublishMessage(
     return false;
   }
 
-  // Publish message<ROSMessageType>
+  // Publish message<ROSMessageType> using common macros
   std::string format = message_buffer_map_.at(pub_index)->message_format;
   switch (pub_sub_types_[pub_index]) {
     case PubSubType::QrbTransportType:
     case PubSubType::DmabufTransportType:
-      if (format.compare("qrb_ros/transport/type/Image") == 0) {
-        return publish_message<qrb_ros::transport::type::Image>(pub_index, message_index, header);
-      } else if (format.compare("qrb_ros/transport/type/Imu") == 0) {
-        return publish_message<qrb_ros::transport::type::Imu>(pub_index, message_index, header);
-      } else if (format.compare("dmabuf_transport/type/Image") == 0) {
-        return publish_message<dmabuf_transport::type::Image>(pub_index, message_index, header);
-      } else if (format.compare("dmabuf_transport/type/PointCloud2") == 0) {
-        return publish_message<dmabuf_transport::type::PointCloud2>(
-          pub_index, message_index, header);
-      }
+      #define PUBLISH_TRANSPORT_MESSAGE(format_str, msg_type) \
+        if (format.compare(format_str) == 0) { \
+          return publish_message<msg_type>(pub_index, message_index, header); \
+        }
+      
+      FOR_EACH_QRB_TRANSPORT_TYPE(PUBLISH_TRANSPORT_MESSAGE)
+      FOR_EACH_DMABUF_TRANSPORT_TYPE(PUBLISH_TRANSPORT_MESSAGE)
       break;
     case PubSubType::RosMessaageType:
       #define PUBLISH_ROS_MESSAGE(ROSMessageType) \
-      if (rosidl_generator_traits::name<ROSMessageType>() == format) { \
-        return publish_message<ROSMessageType>(pub_index, message_index, header); \
-      } \
-
-      PUBLISH_ROS_MESSAGE(sensor_msgs::msg::Image)
-      PUBLISH_ROS_MESSAGE(sensor_msgs::msg::CompressedImage)
-      PUBLISH_ROS_MESSAGE(qrb_ros_tensor_list_msgs::msg::TensorList)
+        if (rosidl_generator_traits::name<ROSMessageType>() == format) { \
+          return publish_message<ROSMessageType>(pub_index, message_index, header); \
+        }
+      
+      FOR_EACH_ROS_MESSAGE_TYPE(PUBLISH_ROS_MESSAGE)
       break;
     default:
       return false;
