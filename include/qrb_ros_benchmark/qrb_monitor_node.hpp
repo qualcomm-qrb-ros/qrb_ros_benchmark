@@ -30,11 +30,11 @@ private:
   void create_monitor_subscriber();
 
   // The method used to create the ROSMessageType subscriber.
-  template<typename ROSMessageType>
+  template <typename ROSMessageType>
   void create_message_subscriber();
 
   // Message subscriber callback function.
-  template<typename ROSMessageType>
+  template <typename ROSMessageType>
   void ros_message_subscriber_callback(const std::shared_ptr<ROSMessageType> ros_msg);
 };
 
