@@ -29,14 +29,15 @@ enum class PubSubType : uint8_t
   GenericType,
 };
 
-class MessageBufferBase {
+class MessageBufferBase
+{
 public:
   std::string message_format;
   virtual size_t get_buffer_size();
   virtual void clear();
 };
 
-template<typename ROSMessageType>
+template <typename ROSMessageType>
 class MessageBuffer : public qrb_ros::benchmark::MessageBufferBase
 {
 public:
@@ -60,10 +61,9 @@ private:
 
   // Use the selected publisher to publish message, and the timestamp
   // will be modified before publishing.
-  bool PublishMessage(
-    const size_t pub_index,
-    const size_t message_index,
-    const std::optional<std_msgs::msg::Header> & header) override;
+  bool PublishMessage(const size_t pub_index,
+      const size_t message_index,
+      const std::optional<std_msgs::msg::Header> & header) override;
 
   // Return the messages count number.
   uint64_t GetRecordedMessageCount() const override;
@@ -78,19 +78,18 @@ private:
   void create_playback_pubsub(const size_t index, const std::string format);
 
   // Create publisher and subscriber with ROSMessageType.
-  template<typename ROSMessageType>
+  template <typename ROSMessageType>
   void create_message_pubsub(const size_t index, const std::string format);
 
   // Message subscriber callback function, which is used to record the received messages.
-  template<typename ROSMessageType>
+  template <typename ROSMessageType>
   void message_subscriber_callback(const std::shared_ptr<ROSMessageType> msg, const size_t index);
 
   // Use the selected publisher<ROSMessageType> to publish message.
-  template<typename ROSMessageType>
-  bool publish_message(
-    const size_t pub_index,
-    const size_t message_index,
-    const std::optional<std_msgs::msg::Header> & header);
+  template <typename ROSMessageType>
+  bool publish_message(const size_t pub_index,
+      const size_t message_index,
+      const std::optional<std_msgs::msg::Header> & header);
 
   // A map to record the pub/sub types and indices, map key is pub/sub index.
   std::unordered_map<size_t, PubSubType> pub_sub_types_;
