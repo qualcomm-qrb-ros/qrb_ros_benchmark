@@ -3,7 +3,7 @@
   <p align="center">
    <img src="./docs/assets/qrb_ros_benchmark.png" width="300">
   </p>
-  <p>ROS2 package for evaluating performance of ROS components on Qualcomm robotics platforms</p>
+  <p>ROS2 package for evaluating performance of ROS components on Qualcomm robotics platforms.</p>
   <a href="https://ubuntu.com/download/qualcomm-iot" target="_blank"><img src="https://img.shields.io/badge/Qualcomm%20Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Qualcomm Ubuntu"></a>
   <a href="https://docs.ros.org/en/jazzy/" target="_blank"><img src="https://img.shields.io/badge/ROS%20Jazzy-1c428a?style=for-the-badge&logo=ros&logoColor=white" alt="Jazzy"></a>
 </div>
