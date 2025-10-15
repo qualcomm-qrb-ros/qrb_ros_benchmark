@@ -94,8 +94,22 @@ sudo apt install ros-jazzy-qrb-ros-benchmark
 ```
 
 ## 🚀 Usage
+
+Install the qrb-ros-transport-image-type message:
+```bash
+sudo add-apt-repository ppa:ubuntu-qcom-iot/qcom-noble-ppa
+sudo add-apt-repository ppa:ubuntu-qcom-iot/qirp
+sudo apt update
+sudo apt install ros-jazzy-qrb-ros-transport-image-type
+```
+
 Here comes the minimum template for evaluating [qrb_ros/transport/type/Image](https://github.com/qualcomm-qrb-ros/qrb_ros_transport/tree/main/qrb_ros_transport_image_type):
 
+```bash
+vim qrb-ros-transport-image-type_launch.py
+```
+
+Write code below into qrb-ros-transport-image-type_launch.py
 ```python
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
@@ -173,6 +187,13 @@ class TestQrbNode(ROS2BenchmarkTest):
     def test_benchmark(self):
         self.run_benchmark()
 ```
+
+Start the qrb-ros-transport-image-type benchmark:
+```bash
+launch_test qrb-ros-transport-image-type_launch.py
+```
+
+For more usage, please see: [ros2_benchmark](https://github.com/NVIDIA-ISAAC-ROS/ros2_benchmark)
 
 ## 👨‍💻 Build from Source
 
