@@ -190,6 +190,7 @@ class TestQrbNode(ROS2BenchmarkTest):
 
 Start the qrb-ros-transport-image-type benchmark:
 ```bash
+source /opt/ros/jazzy/setup.bash
 launch_test qrb-ros-transport-image-type_launch.py
 ```
 
