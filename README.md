@@ -210,6 +210,7 @@ git clone https://github.com/qualcomm-qrb-ros/lib_mem_dmabuf.git && \
 git clone https://github.com/qualcomm-qrb-ros/qrb_ros_imu.git && \
 git clone https://github.com/qualcomm-qrb-ros/dmabuf_transport.git && \
 git clone https://github.com/qualcomm-qrb-ros/qrb_ros_benchmark.git && \
+git clone https://github.com/qualcomm-qrb-ros/qrb_ros_interfaces.git && \
 cd ~/ros-ws/ && \
 colcon build --packages-up-to qrb_ros_benchmark
 ```
