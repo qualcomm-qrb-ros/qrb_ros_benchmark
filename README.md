@@ -82,7 +82,7 @@ The basic usage is same to [ros2_benchmark](https://github.com/NVIDIA-ISAAC-ROS/
 Add Qualcomm IOT PPA for Ubuntu:
 
 ```bash
-sudo add-apt-repository ppa:ubuntu-qcom-iot/qcom-noble-ppa
+sudo add-apt-repository ppa:ubuntu-qcom-iot/qcom-ppa
 sudo add-apt-repository ppa:ubuntu-qcom-iot/qirp
 sudo apt update
 ```
@@ -97,7 +97,7 @@ sudo apt install ros-jazzy-qrb-ros-benchmark
 
 Install the qrb-ros-transport-image-type message:
 ```bash
-sudo add-apt-repository ppa:ubuntu-qcom-iot/qcom-noble-ppa
+sudo add-apt-repository ppa:ubuntu-qcom-iot/qcom-ppa
 sudo add-apt-repository ppa:ubuntu-qcom-iot/qirp
 sudo apt update
 sudo apt install ros-jazzy-qrb-ros-transport-image-type
