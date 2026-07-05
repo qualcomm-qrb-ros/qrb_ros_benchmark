@@ -61,8 +61,6 @@ The basic usage is same to [ros2_benchmark](https://github.com/NVIDIA-ISAAC-ROS/
     <th>Hardware Overview</th>
   </tr>
   <tr>
-    <td>Qualcomm Dragonwing™ RB3 Gen2</td>
-    <th><a href="https://www.qualcomm.com/developer/hardware/rb3-gen-2-development-kit"><img src="https://s7d1.scene7.com/is/image/dmqualcommprod/rb3-gen2-carousel?fmt=webp-alpha&qlt=85" width="180"/></a></th>
   </tr>
     <tr>
     <td>Qualcomm Dragonwing™ IQ-9075 EVK</td>
